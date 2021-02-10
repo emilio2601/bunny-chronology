@@ -4,10 +4,10 @@ from spotipy.oauth2 import SpotifyOAuth
 BUNNY_URI = "4q3ewBCX7sLwd24euuV69X"
 BUNNY_PLAYLIST_URI = "3cwfW1Gn2qABuaD6ryiSZS"
 
-song_blacklist = ['3pNgxsIiiFPokFmf0xQ6QJ', '3YOFaS3tpXEBEGBlLKpzJc', '43aPjI5XPpK5X9lNpSqIfX', '6WK7h2WfMmnX7zOZnfzoYo', '0lj1MuedLy7ZNo3AWcLIHp', '2WI0AMgzaEdKs2hcoN21vF', '3URT2JrBkTjzueCl7c8VAc']
+song_blacklist = ['3pNgxsIiiFPokFmf0xQ6QJ', '3YOFaS3tpXEBEGBlLKpzJc', '43aPjI5XPpK5X9lNpSqIfX', '6WK7h2WfMmnX7zOZnfzoYo', '0lj1MuedLy7ZNo3AWcLIHp', '2WI0AMgzaEdKs2hcoN21vF', '3URT2JrBkTjzueCl7c8VAc', '7gc33UVszqP31CRJczTcMv']
 album_blacklist = ['3qjsecGpiaOlfUbFZ8ZKJs', '0CDLQ6cxLj0UydmFX394VL']
 
-auth_manager = SpotifyOAuth(client_id='447e5a04a0c346b284e593ce650de1e0', client_secret='0780b11b0807420dac2cd84289728648', scope='playlist-modify-private', redirect_uri='http://localhost:8080/callback')
+auth_manager = SpotifyOAuth(scope='playlist-modify-public', redirect_uri='http://localhost:8080/callback')
 sp = spotipy.Spotify(auth_manager=auth_manager)
 
 def artist_in_track(artist_uri, track):
