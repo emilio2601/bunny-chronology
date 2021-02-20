@@ -4,8 +4,10 @@ from spotipy.oauth2 import SpotifyOAuth
 BUNNY_URI = "4q3ewBCX7sLwd24euuV69X"
 BUNNY_PLAYLIST_URI = "3cwfW1Gn2qABuaD6ryiSZS"
 
-song_blacklist = ['3pNgxsIiiFPokFmf0xQ6QJ', '3YOFaS3tpXEBEGBlLKpzJc', '43aPjI5XPpK5X9lNpSqIfX', '6WK7h2WfMmnX7zOZnfzoYo', '0lj1MuedLy7ZNo3AWcLIHp', '2WI0AMgzaEdKs2hcoN21vF', '3URT2JrBkTjzueCl7c8VAc', '7gc33UVszqP31CRJczTcMv']
+song_blacklist = ['3pNgxsIiiFPokFmf0xQ6QJ', '44w3jlijhm6VAkWHrHCuLS', '2GPCE96x9Go6acdDt8ex6p', '3YOFaS3tpXEBEGBlLKpzJc', '43aPjI5XPpK5X9lNpSqIfX', '6WK7h2WfMmnX7zOZnfzoYo', '0lj1MuedLy7ZNo3AWcLIHp', '2WI0AMgzaEdKs2hcoN21vF', '3URT2JrBkTjzueCl7c8VAc', '7gc33UVszqP31CRJczTcMv']
 album_blacklist = ['3qjsecGpiaOlfUbFZ8ZKJs', '0CDLQ6cxLj0UydmFX394VL']
+
+album_whitelist = ['287ZdmXv5M5YH5xxdGLhbY']
 
 auth_manager = SpotifyOAuth(scope='playlist-modify-public', redirect_uri='http://localhost:8080/callback')
 sp = spotipy.Spotify(auth_manager=auth_manager)
@@ -41,7 +43,7 @@ for i in range(0, album_count, 50):
   albums = sp.artist_albums(BUNNY_URI, country="MX", limit=50, offset=i)
 
   for album in albums['items']:
-    if album['album_type'] == 'compilation' or artist_name_in_album('Various Artists', album) or album['id'] in album_blacklist: 
+    if (album['album_type'] == 'compilation' or artist_name_in_album('Various Artists', album) or album['id'] in album_blacklist) and (album['id'] not in album_whitelist): 
       continue
     
     print(f"{album['name']} ({album['album_type']} released on {album['release_date']})")
