@@ -4,7 +4,21 @@ from spotipy.oauth2 import SpotifyOAuth
 BUNNY_URI = "4q3ewBCX7sLwd24euuV69X"
 BUNNY_PLAYLIST_URI = "3cwfW1Gn2qABuaD6ryiSZS"
 
-song_blacklist = ['3pNgxsIiiFPokFmf0xQ6QJ', '44w3jlijhm6VAkWHrHCuLS', '2GPCE96x9Go6acdDt8ex6p', '3YOFaS3tpXEBEGBlLKpzJc', '43aPjI5XPpK5X9lNpSqIfX', '6WK7h2WfMmnX7zOZnfzoYo', '0lj1MuedLy7ZNo3AWcLIHp', '2WI0AMgzaEdKs2hcoN21vF', '3URT2JrBkTjzueCl7c8VAc', '7gc33UVszqP31CRJczTcMv', '0jPkVCHNaLJhhtq70OingB']
+song_blacklist = [
+  '3pNgxsIiiFPokFmf0xQ6QJ', 
+  '44w3jlijhm6VAkWHrHCuLS', 
+  '2GPCE96x9Go6acdDt8ex6p', 
+  '3YOFaS3tpXEBEGBlLKpzJc', 
+  '43aPjI5XPpK5X9lNpSqIfX', 
+  '6WK7h2WfMmnX7zOZnfzoYo', 
+  '0lj1MuedLy7ZNo3AWcLIHp', 
+  '2WI0AMgzaEdKs2hcoN21vF', 
+  '3URT2JrBkTjzueCl7c8VAc', 
+  '7gc33UVszqP31CRJczTcMv', 
+  '0jPkVCHNaLJhhtq70OingB',
+  '13DJ7BruwToSrQeQyUQgIT'
+]
+
 album_blacklist = ['3qjsecGpiaOlfUbFZ8ZKJs', '0CDLQ6cxLj0UydmFX394VL']
 
 album_whitelist = ['287ZdmXv5M5YH5xxdGLhbY']
