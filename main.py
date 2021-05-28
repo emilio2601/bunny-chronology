@@ -1,5 +1,8 @@
 import spotipy
+import dotenv
 from spotipy.oauth2 import SpotifyOAuth
+
+dotenv.load_dotenv()
 
 BUNNY_URI = "4q3ewBCX7sLwd24euuV69X"
 BUNNY_PLAYLIST_URI = "3cwfW1Gn2qABuaD6ryiSZS"
@@ -16,7 +19,8 @@ song_blacklist = [
   '3URT2JrBkTjzueCl7c8VAc', 
   '7gc33UVszqP31CRJczTcMv', 
   '0jPkVCHNaLJhhtq70OingB',
-  '13DJ7BruwToSrQeQyUQgIT'
+  '13DJ7BruwToSrQeQyUQgIT',
+  '0WdWNUBp44Bx30rILtT7Cg'
 ]
 
 album_blacklist = ['3qjsecGpiaOlfUbFZ8ZKJs', '0CDLQ6cxLj0UydmFX394VL']
@@ -77,7 +81,7 @@ tracks = list(name_uri_dict.values())
 tracks.sort(key=lambda x: x[0])
 
 
-track_chunks = chunker([track[1] for track in tracks], 100)
+track_chunks = chunker([track[1] for track in reversed(tracks)], 100)
 
 for chunk in track_chunks:
   sp.playlist_add_items(BUNNY_PLAYLIST_URI, chunk)
