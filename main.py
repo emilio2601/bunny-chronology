@@ -20,7 +20,9 @@ song_blacklist = [
   '7gc33UVszqP31CRJczTcMv', 
   '0jPkVCHNaLJhhtq70OingB',
   '13DJ7BruwToSrQeQyUQgIT',
-  '0WdWNUBp44Bx30rILtT7Cg'
+  '0WdWNUBp44Bx30rILtT7Cg',
+  '3fvb9N0z7RK4Bjznxidly4',
+  '66x45Yh9x397PWpxMX0ZDT',
 ]
 
 album_blacklist = ['3qjsecGpiaOlfUbFZ8ZKJs', '0CDLQ6cxLj0UydmFX394VL']
