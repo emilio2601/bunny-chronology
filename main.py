@@ -30,7 +30,8 @@ artist_info = {
       '2ZOKsLsf7vqZtd2QKNwI9p',
     ],
     "album_blacklist": ['3qjsecGpiaOlfUbFZ8ZKJs', '0CDLQ6cxLj0UydmFX394VL'],
-    "album_whitelist": ['287ZdmXv5M5YH5xxdGLhbY']
+    "album_whitelist": ['287ZdmXv5M5YH5xxdGLhbY'],
+    "song_whitelist": ['5NhLA2P7AiV3cloVmwtwLS', '4eMKD8MRroxCqugpsxCCNb', '0afpbPmRHldjP59YRslQz9', '7zqbzmtpvJ9yqfnykmGYW6']
   },
 
   "ferxxo": {
@@ -104,6 +105,13 @@ def main():
           name_uri_dict[track['name']] = [album['release_date'], track['id']]
           print(f"-- {track['name']} ({track['id']}) - {artist_names}")
 
+  if selected_artist['song_whitelist']:
+    for song in selected_artist['song_whitelist']:
+      track = sp.track(song)
+      artist_names = ", ".join([artist['name'] for artist in track['artists']])
+      name_uri_dict[track['name']] = [track['album']['release_date'], track['id']]
+      print(f"-- {track['name']} ({track['id']}) - {artist_names}")
+  
   tracks = list(name_uri_dict.values())
   tracks.sort(key=lambda x: x[0])
 
