@@ -130,8 +130,9 @@ def main():
   items = fetch_all_playlist_tracks(sp, playlist_id)
 
   print("Computing dates...")
-  tracks_with_dates: List[Tuple[str, str]] = []  # (normalized_date, track_id)
-  for it in items:
+  # (normalized_date, album_id, disc_number, track_number, original_index, track_id)
+  tracks_with_meta: List[Tuple[str, str, int, int, int, str]] = []
+  for idx, it in enumerate(items):
     track = it.get("track")
     if not track:
       continue
@@ -142,17 +143,21 @@ def main():
     if normalized_date is None:
       # Put unknowns at the very end but keep deterministic order
       normalized_date = "9999-12-31"
-    tracks_with_dates.append((normalized_date, track_id))
+    album = track.get("album") or {}
+    album_id = album.get("id") or ""
+    disc_number = track.get("disc_number") or 0
+    track_number = track.get("track_number") or 0
+    tracks_with_meta.append((normalized_date, album_id, int(disc_number), int(track_number), idx, track_id))
 
-  # Sort by release date ascending; stable sort preserves original order for ties
-  tracks_with_dates.sort(key=lambda x: x[0])
+  # Sort by release date, then album, then disc and track number to preserve album order
+  tracks_with_meta.sort(key=lambda x: (x[0], x[1], x[2], x[3], x[4]))
 
   # Clear playlist
   print("Clearing playlist...")
   wipe_playlist(sp, playlist_id)
 
-  # Re-add in release order from oldest to newest
-  ordered_track_ids = [tid for _, tid in tracks_with_dates]
+  # Re-add in release order from oldest to newest; within album, in album order
+  ordered_track_ids = [t[-1] for t in tracks_with_meta]
   print("Re-adding tracks...")
   for chunk in chunker(ordered_track_ids, 100):
     sp.playlist_add_items(playlist_id, chunk)
